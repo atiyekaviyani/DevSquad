@@ -1,5 +1,5 @@
-import React from 'react'
-import Course from '../../Components/Course/Course'
+import React from 'react';
+import Course from '../../Components/Store';
 
 const CoursePage = () => {
   return (

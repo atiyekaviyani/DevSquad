@@ -1,15 +1,15 @@
-import React from 'react'
-import Header from '../Common/Header'
-import Herosection from '../Landing/Herosection'
+import React from "react";
+import HeroSection from "../Landing/HeroSection"
 const Landing = () => {
   return (
     <div>
-    
-      LandingPage
-      <Header/>
-      <Herosection/>
+      <h1>
+       
+        <HeroSection/>
+      </h1>
+     
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;

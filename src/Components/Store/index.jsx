@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Course = () => {
+const index = () => {
   return (
     <div>
-      CoursePage
+      Store
     </div>
   )
 }
 
-export default Course
+export default index
