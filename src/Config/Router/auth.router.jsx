@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import LandingHolder from "../../Screens/LandingHolder";
 import StorePage from "../../Screens/StorePage";
 import LoginPage from "../../Screens/LoginPage";
+import About from "../../Screens/AboutPage";
 export const Routers = createBrowserRouter([
   {
   path: "/",
@@ -24,6 +25,10 @@ export const Routers = createBrowserRouter([
     {
       path:"Login",
       element:<LoginPage/>
+    },
+    {
+      path:"About",
+      element:<About/>
     }
   ],
 }
