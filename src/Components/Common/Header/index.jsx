@@ -15,7 +15,6 @@ export default function Header() {
       {/* نوار اطلاع‌رسانی بالا */}
       <div className="bg-[#1f2240] text-white text-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 flex items-center justify-between">
-          {/* انتخاب زبان / کشور */}
           <div className="flex items-center gap-2 mr-12">
             <button
               aria-label="change-language"
@@ -81,16 +80,16 @@ export default function Header() {
 
           {/* منوهای میانی (نمایش در md+) */}
           <nav className="hidden md:flex items-center gap-6 flex-1 justify-center">
-            <a href="#" className="text-gray-700 hover:text-indigo-600">
+            <a href="Landing" className="text-gray-700 hover:text-indigo-600">
               صفحه اصلی
             </a>
-            <a href="#" className="text-gray-700 hover:text-indigo-600">
+            <a href="Store" className="text-gray-700 hover:text-indigo-600">
               فروشگاه
             </a>
-            <a href="#" className="text-gray-700 hover:text-indigo-600">
+            <a href="blog" className="text-gray-700 hover:text-indigo-600">
               وبلاگ
             </a>
-            <a href="#" className="text-gray-700 hover:text-indigo-600">
+            <a href="About" className="text-gray-700 hover:text-indigo-600">
               درباره ما
             </a>
           </nav>
