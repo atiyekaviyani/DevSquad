@@ -5,6 +5,9 @@ import LandingHolder from "../../Screens/LandingHolder";
 import StorePage from "../../Screens/StorePage";
 import LoginPage from "../../Screens/LoginPage";
 import About from "../../Screens/AboutPage";
+import DetailBlog from "../../Screens/DetailBlogPage";
+import ContactPage from "../../Screens/ContactUs";
+import Registration from "../../Screens/ContactUs";
 export const Routers = createBrowserRouter([
   {
   path: "/",
@@ -15,26 +18,40 @@ export const Routers = createBrowserRouter([
       element: <LandingHolder />,
     },
     {
-      path: "Landing",
+      path: "/Landing",
       element: <LandingHolder />,
     },
     {
-      path:"Store",
+      path:"/Store",
       element:<StorePage/>
     },
+   
     {
-      path:"Login",
-      element:<LoginPage/>
-    },
-    {
-      path:"About",
+      path:"/About",
       element:<About/>
     } ,
-    {
-      path:"blog",
+      {
+      path:"/blog",
       element:<Blog/>
-    }
+    } ,
+    {
+      path:"/Detail",
+      element:<DetailBlog/>
+    },
+     {
+      path:"/ContactPage",
+      element:<ContactPage/>
+    },
   ],
-}
+},
+ {
+      path:"/Login",
+      element:<LoginPage/>
+    },
+   {
+    path:"",
+    element:<Registration/>
+   },
 
 ]);
+

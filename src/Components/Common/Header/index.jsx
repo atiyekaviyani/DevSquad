@@ -4,6 +4,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
 import { PiUserLight } from "react-icons/pi";
 import { BsBag } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
+import { NavLink } from "react-router-dom";
 
 
 export default function Header() {
@@ -12,7 +13,7 @@ export default function Header() {
 
   return (
     <header dir="rtl" className="w-full font-sans">
-      {/* نوار اطلاع‌رسانی بالا */}
+    
       <div className="bg-[#1f2240] text-white text-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 flex items-center justify-between">
           <div className="flex items-center gap-2 mr-12">
@@ -63,10 +64,10 @@ export default function Header() {
         </div>
       </div>
 
-      {/* ناوبری اصلی */}
+    
       <div className=" bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between gap-6">
-          {/* لوگو */}
+          
           <div className="flex items-center gap-4">
             <a href="#" className="flex items-center gap-2">
               <div className="bg-black text-white rounded px-3 py-1 font-semibold">
@@ -78,7 +79,7 @@ export default function Header() {
             </a>
           </div>
 
-          {/* منوهای میانی (نمایش در md+) */}
+      
           <nav className="hidden md:flex items-center gap-6 flex-1 justify-center">
             <a href="Landing" className="text-gray-700 hover:text-indigo-600">
               صفحه اصلی
@@ -91,6 +92,9 @@ export default function Header() {
             </a>
             <a href="About" className="text-gray-700 hover:text-indigo-600">
               درباره ما
+            </a>
+               <a href="ContactPage" className="text-gray-700 hover:text-indigo-600">
+               ارتباط باما
             </a>
           </nav>
 
@@ -126,7 +130,10 @@ export default function Header() {
               aria-label="profile"
               className="p-2 rounded-full hover:bg-gray-100 hidden sm:inline-flex"
             >
-              <PiUserLight size={28}/>
+              <NavLink to="/Login">
+                  <PiUserLight size={28}/>
+              </NavLink>
+            
             </button>
 
             {/* آیکون سبد خرید */}
