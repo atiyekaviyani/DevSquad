@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { motion } from "framer-motion"; // اضافه کردن ایمپورت
 
 const defaultIcon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
@@ -55,7 +56,12 @@ export default function ContactMap() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-4 mt-10">
+    <motion.div
+      className="w-full max-w-4xl mx-auto p-4 mt-10"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <form onSubmit={handleSubmit} className="mb-4 flex gap-2">
         <input
           type="text"
@@ -87,6 +93,7 @@ export default function ContactMap() {
           <Popup>مازندران، ساری، خیابان فرهنگ</Popup>
         </Marker>
       </MapContainer>
-    </div>
+    </motion.div>
   );
 }
+

@@ -1,6 +1,33 @@
+import React from "react";
+import { motion } from "framer-motion";
+
 export default function ArticleSection() {
+  const containerVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        when: "beforeChildren",
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
+
   return (
-    <div className="">
+    <motion.div
+      className=""
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <div>
         <img
           src="Blog.png"
@@ -11,7 +38,10 @@ export default function ArticleSection() {
 
       <section className="px-4 py-10 ">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ml-14">
-          <div className="relative bg-white shadow rounded-2xl overflow-hidden h-[490px]">
+          <motion.div
+            className="relative bg-white shadow rounded-2xl overflow-hidden h-[490px]"
+            variants={itemVariants}
+          >
             <img
               src="Frame 3.png"
               alt="article 1"
@@ -26,11 +56,14 @@ export default function ArticleSection() {
                 مشاهده همه
               </button>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col gap-6">
+          <motion.div className="flex flex-col gap-6" variants={itemVariants}>
             <div className="grid grid-cols-2 gap-6">
-              <div className="relative bg-white shadow rounded-2xl overflow-hidden h-52">
+              <motion.div
+                className="relative bg-white shadow rounded-2xl overflow-hidden h-52"
+                variants={itemVariants}
+              >
                 <img
                   src="Frame 5.png"
                   alt="article 2"
@@ -42,9 +75,12 @@ export default function ArticleSection() {
                     مشاهده همه
                   </button>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="relative bg-white shadow rounded-2xl overflow-hidden h-52">
+              <motion.div
+                className="relative bg-white shadow rounded-2xl overflow-hidden h-52"
+                variants={itemVariants}
+              >
                 <img
                   src="Frame 6.png"
                   alt="article 3"
@@ -56,10 +92,13 @@ export default function ArticleSection() {
                     مشاهده همه
                   </button>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="relative bg-white shadow rounded-2xl overflow-hidden h-64">
+            <motion.div
+              className="relative bg-white shadow rounded-2xl overflow-hidden h-64"
+              variants={itemVariants}
+            >
               <img
                 src="Frame 8.png"
                 alt="article 4"
@@ -67,20 +106,20 @@ export default function ArticleSection() {
               />
               <div className="absolute bottom-4 left-4 right-4 bg-black/40 backdrop-blur-md text-white px-4 py-3 rounded-xl">
                 <div className="text-xs">طراحی و دوخت لباس</div>
-                <div className="font-semibold text-sm mt-1">
-                  تحولات طراحی دوخت
-                </div>
+                <div className="font-semibold text-sm mt-1">تحولات طراحی دوخت</div>
                 <button className="mt-2 text-sm border border-white px-3 py-1 rounded-xl hover:bg-white hover:text-black transition">
                   مشاهده همه
                 </button>
               </div>
-            </div>
-          </div>
-                 <div className="flex flex-col gap-6">
+            </motion.div>
+          </motion.div>
+
+          <motion.div className="flex flex-col gap-6" variants={itemVariants}>
             <div className="grid grid-cols-2 gap-6">
-              
-
-              <div className="relative bg-white shadow rounded-2xl overflow-hidden h-52 w-96">
+              <motion.div
+                className="relative bg-white shadow rounded-2xl overflow-hidden h-52 w-96"
+                variants={itemVariants}
+              >
                 <img
                   src="Frame 6.png"
                   alt="article 3"
@@ -92,10 +131,13 @@ export default function ArticleSection() {
                     مشاهده همه
                   </button>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="relative bg-white shadow rounded-2xl overflow-hidden h-64 w-96">
+            <motion.div
+              className="relative bg-white shadow rounded-2xl overflow-hidden h-64 w-96"
+              variants={itemVariants}
+            >
               <img
                 src="Frame 8.png"
                 alt="article 4"
@@ -103,17 +145,15 @@ export default function ArticleSection() {
               />
               <div className="absolute bottom-4 left-4 right-4 bg-black/40 backdrop-blur-md text-white px-4 py-3 rounded-xl">
                 <div className="text-xs">طراحی و دوخت لباس</div>
-                <div className="font-semibold text-sm mt-1">
-                  تحولات طراحی دوخت
-                </div>
+                <div className="font-semibold text-sm mt-1">تحولات طراحی دوخت</div>
                 <button className="mt-2 text-sm border border-white px-3 py-1 rounded-xl hover:bg-white hover:text-black transition">
                   مشاهده همه
                 </button>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }
