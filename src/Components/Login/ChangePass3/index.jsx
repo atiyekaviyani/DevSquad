@@ -16,7 +16,7 @@ import * as Yup from "yup";
 const schema = Yup.object({
   phone: Yup.string().when("step", {
     is: "login",
-    then: (s) => s.required("شماره همراه الزامی است"),
+    then: (s) => s.required("  رمز عبور الزامی است"),
   }),
   pass: Yup.string().when("step", {
     is: "login",
@@ -46,13 +46,9 @@ const Index = () => {
           {dark ? <FaSun /> : <FaMoon />}
         </button>
 
-        <h1 className="text-3xl font-semibold text-center">
-          ! به لونا شاپ خوش آمدید
-        </h1>
+        <h1 className="text-3xl font-semibold text-center"> رمز عبور جدید</h1>
         <br />
-        <h2>
-          برای ورود به حساب خود ایمیل  و رمز عبور خود را وارد کنید
-        </h2>
+        <h2 className="ml-20"> رمز عبور جدید خود را وارد کنید </h2>
 
         <Formik
           initialValues={{ phone: "", pass: "", otp: "", step: "login" }}
@@ -71,42 +67,17 @@ const Index = () => {
                 <>
                   {/* Phone */}
                   <div className="relative">
-                    <FaPhoneAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <FaPhoneAlt className="absolute right-4 top-6 -translate-y-1/2 text-gray-400" />
                     <Field
                       name="phone"
                       dir="rtl"
-                      placeholder="شماره همراه"
+                      placeholder="رمز عبور  "
                       className="w-full h-12 pr-12 px-4 rounded-lg bg-gray-700 border border-gray-600 text-right"
                     />
                     {errors.phone && touched.phone && (
                       <motion.div className="text-red-400 text-xs mt-2 flex gap-2">
                         <FaExclamationCircle />
                         {errors.phone}
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Password */}
-                  <div className="relative">
-                    <FaLock className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                    <button
-                      type="button"
-                      onClick={() => setShowPass(!showPass)}
-                      className="absolute left-4 top-1/2 -translate-y-1/2"
-                    >
-                      {showPass ? <FaEyeSlash /> : <FaEye />}
-                    </button>
-                    <Field
-                      name="pass"
-                      type={showPass ? "text" : "password"}
-                      dir="rtl"
-                      placeholder="رمز عبور"
-                      className="w-full h-12 pr-12 pl-12 px-4 rounded-lg bg-gray-700 border border-gray-600 text-right"
-                    />
-                    {errors.pass && touched.pass && (
-                      <motion.div className="text-red-400 text-xs mt-2 flex gap-2">
-                        <FaExclamationCircle />
-                        {errors.pass}
                       </motion.div>
                     )}
                   </div>
@@ -118,7 +89,7 @@ const Index = () => {
                   <Field
                     name="otp"
                     dir="rtl"
-                    placeholder="کد تایید"
+                    placeholder="رمز عبور "
                     className="w-full h-12 px-4 rounded-lg bg-gray-700 border border-gray-600 text-right"
                   />
                   {errors.otp && touched.otp && (
@@ -130,16 +101,19 @@ const Index = () => {
                 </div>
               )}
 
-              <button type="submit" className="w-full bg-black py-3 rounded-lg">
-                {values.step === "login" ? "ورود" : "تایید کد"}
-              </button>
+              <NavLink to="/ChangePass3">
+                <button
+                  type="submit"
+                  className="w-full bg-black py-3 rounded-lg"
+                >
+                  {values.step === "login" ? " تکمیل فرایند" : "تایید کد"}
+                </button>
+              </NavLink>
             </Form>
           )}
         </Formik>
 
         <div className="flex justify-between mt-8 text-sm text-gray-400">
-          <NavLink to="/Register">ایجاد حساب</NavLink>
-          <NavLink to="/ChangePass"> فراموشی رمز  </NavLink>
           <NavLink to="/">بازگشت</NavLink>
         </div>
       </div>

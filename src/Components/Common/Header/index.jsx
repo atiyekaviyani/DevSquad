@@ -93,7 +93,7 @@ export default function Header() {
             <a href="About" className="text-gray-700 hover:text-indigo-600">
               درباره ما
             </a>
-               <a href="ContactPage" className="text-gray-700 hover:text-indigo-600">
+               <a href="/ContactPage" className="text-gray-700 hover:text-indigo-600">
                ارتباط باما
             </a>
           </nav>

@@ -16,7 +16,7 @@ import * as Yup from "yup";
 const schema = Yup.object({
   phone: Yup.string().when("step", {
     is: "login",
-    then: (s) => s.required("شماره همراه الزامی است"),
+    then: (s) => s.required(" ایمیل الزامی است"),
   }),
   pass: Yup.string().when("step", {
     is: "login",
@@ -47,12 +47,10 @@ const Index = () => {
         </button>
 
         <h1 className="text-3xl font-semibold text-center">
-          ! به لونا شاپ خوش آمدید
-        </h1>
+مشخصات کاربری        </h1>
         <br />
-        <h2>
-          برای ورود به حساب خود ایمیل  و رمز عبور خود را وارد کنید
-        </h2>
+        <h2 className="ml-20">
+ایمیل و پسورد خود را وارد کنید        </h2>
 
         <Formik
           initialValues={{ phone: "", pass: "", otp: "", step: "login" }}
@@ -75,7 +73,7 @@ const Index = () => {
                     <Field
                       name="phone"
                       dir="rtl"
-                      placeholder="شماره همراه"
+                      placeholder="ایمیل "
                       className="w-full h-12 pr-12 px-4 rounded-lg bg-gray-700 border border-gray-600 text-right"
                     />
                     {errors.phone && touched.phone && (
@@ -131,15 +129,13 @@ const Index = () => {
               )}
 
               <button type="submit" className="w-full bg-black py-3 rounded-lg">
-                {values.step === "login" ? "ورود" : "تایید کد"}
+                {values.step === "login" ? "تکمیل ثبت نام" : "تایید کد"}
               </button>
             </Form>
           )}
         </Formik>
 
         <div className="flex justify-between mt-8 text-sm text-gray-400">
-          <NavLink to="/Register">ایجاد حساب</NavLink>
-          <NavLink to="/ChangePass"> فراموشی رمز  </NavLink>
           <NavLink to="/">بازگشت</NavLink>
         </div>
       </div>

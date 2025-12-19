@@ -1,10 +1,10 @@
 import React from 'react';
-import Registration from '../../Components/Login/Registration';
+import ChangePass2 from '../../Components/Login/ChangePass3';
 
 const index = () => {
   return (
     <div>
-      <Registration/>
+      <ChangePass2/>
     </div>
   )
 }
