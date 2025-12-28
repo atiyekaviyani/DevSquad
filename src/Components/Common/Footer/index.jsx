@@ -27,7 +27,47 @@ const index = () => {
                     دانلود اپلیکیشن
                   </a>
                 </li>
-                <div className="border-2 w-48 h-12"></div>
+                <div className="">
+                  <div className=" w-full">
+                    <div className="max-w-6xl mx-auto text-center">
+                      {/* Stores */}
+                      <div className="flex flex-col gap-10 sm:flex-row justify-center items-center ">
+                        {/* App Store */}
+                        <a
+                          href="#"
+                          className="flex items-center gap-6 text-white hover:opacity-80 transition"
+                        >
+                          
+                          <div className="text-left leading-tight w-32">
+                            <p className="text-sm">Available on the</p>
+                            <p className="text-سئ font-semibold">App Store</p>
+                          </div><img
+                            src="AppStore.svg"
+                            alt="App Store"
+                            className="w- h-auto"
+                          />
+                        </a>
+
+                        {/* Google Play */}
+                        <a
+                          href="#"
+                          className="flex items-center gap-4 text-white hover:opacity-80 transition"
+                        >
+                          {" "}
+                          <div className="text-left leading-tight w-36">
+                            <p className="text-xs">android app on</p>
+                            <p className="text-xs font-semibold">Google Play</p>
+                          </div>  <img
+                            src="GooglePlay.svg"
+                            alt="Google Play"
+                            className="w-12 h-auto"
+                          />
+                        </a>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </ul>
             </div>
             <div>

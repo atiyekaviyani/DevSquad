@@ -60,9 +60,20 @@ const Index = () => {
           </label>
 
           <div className="w-full">
-            <h1 className="text-xl font-bold mb-3">دسته بندی مقالات</h1>
-            <ul className="menu bg-base-200 rounded-box w-full border-t-2 text-right shadow-sm flex flex-col gap-2 px-2">
-              <br />
+            <h1 className="text-xl font-bold mb-3 text-right">
+              دسته بندی مقالات
+            </h1>
+
+            <ul
+              dir="rtl"
+              className="
+      menu bg-base-200 rounded-box w-full
+      border-t-2 shadow-sm
+      flex flex-col gap-2
+      px-4 py-3
+      text-right
+    "
+            >
               {[
                 "مد و فشن",
                 "طراحی دوخت و لباس",
@@ -70,8 +81,17 @@ const Index = () => {
                 "سبک زندگی",
                 "مد و پوشاک",
               ].map((item, index) => (
-                <li key={index}>
-                  <a className="cursor-pointer transition-all text-gray-700 duration-200 hover:text-blue-600 hover:underline">
+                <li key={index} className="w-full">
+                  <a
+                    className="
+            block w-full text-right
+            cursor-pointer
+            text-gray-700
+            transition-all duration-200
+            hover:text-blue-600
+            hover:pr-2
+          "
+                  >
                     {item}
                   </a>
                 </li>
@@ -123,11 +143,6 @@ const Index = () => {
           <TagsFilter />
         </div>
       </section>
-
-      {/* بخش اصلی محتوا */}
-      <div className="lg:w-[70%] min-h-[300px] order-1 lg:order-2">
-        {/* اینجا محتواتو بذار */}
-      </div>
     </div>
   );
 };

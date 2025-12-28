@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Cart Body -->
+  <path d="M30 40h60l-6 32H36l-6-32Z" fill="none" stroke="#9CA3AF" stroke-width="4" stroke-linejoin="round"></path>
+
+  <!-- Handle -->
+  <path d="M26 32h10" fill="none" stroke="#9CA3AF" stroke-width="4" stroke-linecap="round"></path>
+
+  <!-- Wheels -->
+  <circle cx="44" cy="82" r="4" fill="#9CA3AF"></circle>
+  <circle cx="76" cy="82" r="4" fill="#9CA3AF"></circle>
+
+  <!-- Empty Line -->
+  <line x1="46" y1="56" x2="74" y2="56" stroke="#D1D5DB" stroke-width="3" stroke-linecap="round"></line>
+</svg>

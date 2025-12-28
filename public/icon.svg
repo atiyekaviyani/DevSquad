@@ -1,0 +1,12 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="60" cy="60" r="56" fill="#1f2937"></circle>
+
+  <!-- Border -->
+  <circle cx="60" cy="60" r="56" fill="none" stroke="#374151" stroke-width="4"></circle>
+
+  <!-- Letter L -->
+  <text x="60" y="78" text-anchor="middle" font-size="64" font-family="IranYekan, Arial, sans-serif" fill="#e5e7eb" font-weight="600">
+    L
+  </text>
+</svg>

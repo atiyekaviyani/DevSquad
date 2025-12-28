@@ -7,12 +7,14 @@ import LoginPage from "../../Screens/LoginPage";
 import About from "../../Screens/AboutPage";
 import DetailBlog from "../../Screens/DetailBlogPage";
 import ContactPage from "../../Screens/ContactUs";
+import BasketCart from "../../Screens/BasketCart";
 import Register from "../../Screens/Register";
 import ChangePassPage from "../../Screens/ChangePassPage";
 import ChangePassPage2 from "../../Screens/ChangePassPage2";
 import ChangePassPage3 from "../../Screens/ChangePassPage3";
 import RegisterPage2 from "../../Screens/Register2";
 import RegisterPage3 from "../../Screens/Register3";
+import ProductDetail from "../../Screens/StorePage/ProductDetail";
 
 export const Routers = createBrowserRouter([
   {
@@ -47,6 +49,14 @@ export const Routers = createBrowserRouter([
       {
         path: "/ContactPage",
         element: <ContactPage />,
+      },
+      {
+        path: "/Basket",
+        element: <BasketCart />,
+      },
+      {
+        path: "ProductDetail",
+        element: <ProductDetail />,
       },
     ],
   },

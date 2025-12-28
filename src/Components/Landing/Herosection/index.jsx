@@ -66,28 +66,32 @@
 //   );
 // }
 
-
 import React from "react";
 import { ArrowUpRight, Dot } from "lucide-react";
 import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
 
 export default function HeroSection() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { 
-        when: "beforeChildren", 
+      transition: {
+        when: "beforeChildren",
         staggerChildren: 0.25,
         duration: 0.6,
-        ease: "easeOut"
+        ease: "easeOut",
       },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
@@ -149,15 +153,21 @@ export default function HeroSection() {
           variants={itemVariants}
         >
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800">3000+</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800">
+              3000+
+            </h3>
             <p className="text-xs sm:text-sm text-gray-500">رضایت مشتریان</p>
           </div>
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800">500+</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800">
+              500+
+            </h3>
             <p className="text-xs sm:text-sm text-gray-500">محصولات جدید</p>
           </div>
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800">5000</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800">
+              5000
+            </h3>
             <p className="text-xs sm:text-sm text-gray-500">کاربران فروشگاه</p>
           </div>
         </motion.div>
@@ -167,9 +177,11 @@ export default function HeroSection() {
           className="flex gap-4 mt-10 justify-start lg:justify-end w-full"
           variants={itemVariants}
         >
-          <button className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full text-sm hover:opacity-80 transition">
-            فروشگاه <ArrowUpRight className="w-4 h-4" />
-          </button>
+          <NavLink to="/store">
+            <button className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full text-sm hover:opacity-80 transition">
+              فروشگاه <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </NavLink>
 
           <button className="flex items-center gap-2 border border-black px-6 py-3 rounded-full text-sm hover:bg-gray-100 transition">
             کالکشن جدید <ArrowUpRight className="w-4 h-4" />

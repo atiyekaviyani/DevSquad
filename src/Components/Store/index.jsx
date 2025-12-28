@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import ProductFilter from '../../Components/Store/ProductFilter';
+import BlogShop from '../../Components/Store/BlogShop';
 
 const index = () => {
   return (
     <div>
-      Store
+      <ProductFilter/>
+     
     </div>
   )
 }

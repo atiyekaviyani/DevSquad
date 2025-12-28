@@ -1,19 +1,24 @@
-import React, { useState } from "react";
-import { Menu} from "lucide-react";
+import React, { useState, useContext } from "react";
+import { CartContext } from "../../../../src/context/CartContext";
+import { Menu } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
 import { PiUserLight } from "react-icons/pi";
 import { BsBag } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
-
+import { Search } from "lucide-react";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
 
+  const { cartItems } = useContext(CartContext); // دریافت داده های سبد خرید از کانتکست
+
+  // محاسبه تعداد کل اقلام در سبد
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
-    <header dir="rtl" className="w-full font-sans">
-    
+    <header dir="rtl" className="w-full font-yekan">
       <div className="bg-[#1f2240] text-white text-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 flex items-center justify-between">
           <div className="flex items-center gap-2 mr-12">
@@ -31,7 +36,7 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-3 relative">
-            <img src="/sentbas.png" alt="" />
+            <img src="/Bus.svg" alt="" />
             <span className="hidden md:inline">
               هزینه ارسال برای سفارش های بالای ۲ میلیون رایگان
             </span>
@@ -64,22 +69,19 @@ export default function Header() {
         </div>
       </div>
 
-    
       <div className=" bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between gap-6">
-          
           <div className="flex items-center gap-4">
             <a href="#" className="flex items-center gap-2">
-              <div className="bg-black text-white rounded px-3 py-1 font-semibold">
-                Lona
-              </div>
-              <div className="hidden sm:block text-indigo-700 text-lg font-medium">
-                LonaShoop
+              <div className="hidden sm:block text-gray-900 text-xl font-medium -ml-2">
+                ONAShOOP
+              </div>{" "}
+              <div className="bg-slate-900 text-white rounded-full px-3 py-1 font-semibold">
+                L
               </div>
             </a>
           </div>
 
-      
           <nav className="hidden md:flex items-center gap-6 flex-1 justify-center">
             <a href="Landing" className="text-gray-700 hover:text-indigo-600">
               صفحه اصلی
@@ -93,12 +95,14 @@ export default function Header() {
             <a href="About" className="text-gray-700 hover:text-indigo-600">
               درباره ما
             </a>
-               <a href="/ContactPage" className="text-gray-700 hover:text-indigo-600">
-               ارتباط باما
+            <a
+              href="/ContactPage"
+              className="text-gray-700 hover:text-indigo-600"
+            >
+              ارتباط باما
             </a>
           </nav>
 
-          {/* آیکون‌ها و سرچ */}
           <div className="flex items-center gap-3">
             <div className="hidden lg:flex items-center px-3 py-1 gap-2">
               <button
@@ -106,8 +110,7 @@ export default function Header() {
                 className="p-2 hover:bg-gray-100 rounded-full transition"
                 aria-label="search"
               >
-              <CiSearch size={28} />
-
+                <CiSearch size={28} />
               </button>
               <div
                 className={`absolute left-64 top-[123px] bg-white shadow-lg rounded-xl w-96  transition-all duration-300 ${
@@ -125,29 +128,29 @@ export default function Header() {
               </div>
             </div>
 
-            {/* آیکون پروفایل */}
             <button
               aria-label="profile"
               className="p-2 rounded-full hover:bg-gray-100 hidden sm:inline-flex"
             >
               <NavLink to="/Login">
-                  <PiUserLight size={28}/>
+                <PiUserLight size={28} />
               </NavLink>
-            
             </button>
 
-            {/* آیکون سبد خرید */}
-            <button
-              aria-label="cart"
-              className="p-2 rounded-full hover:bg-gray-100 relative"
-            >
-              <BsBag size={24} />
-              <span className="absolute -top-1 -left-1 bg-black text-white text-xs rounded-full px-1.5">
-                1
-              </span>
-            </button>
+            <NavLink to="Basket">
+              <button
+                aria-label="cart"
+                className="p-2 rounded-full hover:bg-gray-100 relative"
+              >
+                <BsBag size={24} />
+                {totalQuantity > 0 && (
+                  <span className="absolute -top-1 -left-1 bg-black text-white text-xs rounded-full px-1.5 min-w-[18px] h-5 flex items-center justify-center font-semibold">
+                    {totalQuantity}
+                  </span>
+                )}
+              </button>
+            </NavLink>
 
-            {/* دکمه منوی موبایل */}
             <button
               className="md:hidden p-2 rounded hover:bg-gray-100"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -159,7 +162,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* موبایل منو */}
         {mobileOpen && (
           <div className="md:hidden bg-white border-t">
             <div className="px-4 py-4 space-y-3">
@@ -172,7 +174,7 @@ export default function Header() {
                   className="flex-1 outline-none text-sm"
                 />
               </div>
-              <a href="#" className="block py-2">
+              <a href="#" className="block py-2 font-yekan">
                 صفحه اصلی
               </a>
               <a href="#" className="block py-2">
