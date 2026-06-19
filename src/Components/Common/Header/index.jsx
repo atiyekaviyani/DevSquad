@@ -7,18 +7,21 @@ import { BsBag } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import { Search } from "lucide-react";
+import MegaMenu from "../../Common/MegaMenu";
+
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
-
+  const [megaOpen, setMegaOpen] = useState(false);
   const { cartItems } = useContext(CartContext); // دریافت داده های سبد خرید از کانتکست
 
   // محاسبه تعداد کل اقلام در سبد
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <header dir="rtl" className="w-full font-yekan">
+    <header dir="rtl" className="w-full font-yekan sticky top-0 z-50">
       <div className="bg-[#1f2240] text-white text-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 flex items-center justify-between">
           <div className="flex items-center gap-2 mr-12">
@@ -86,9 +89,32 @@ export default function Header() {
             <a href="Landing" className="text-gray-700 hover:text-indigo-600">
               صفحه اصلی
             </a>
-            <a href="Store" className="text-gray-700 hover:text-indigo-600">
+
+            {/* <a href="Store" className="text-gray-700 hover:text-indigo-600">
               فروشگاه
-            </a>
+            </a> */}
+
+            {/*           
+<MegaMenu/> */}
+
+            <div className="" onMouseEnter={() => setMegaOpen(true)}>
+              <NavLink to="/Store">
+                 <button className="text-gray-700 hover:text-indigo-600">
+                فروشگاه
+              </button>
+              </NavLink>
+             
+
+              {megaOpen && (
+                <div
+                  className=""
+                  onMouseLeave={() => setMegaOpen(false)}
+                >
+                  <MegaMenu />
+                </div>
+              )}
+            </div>
+
             <a href="blog" className="text-gray-700 hover:text-indigo-600">
               وبلاگ
             </a>

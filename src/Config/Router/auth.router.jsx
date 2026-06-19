@@ -16,6 +16,16 @@ import RegisterPage2 from "../../Screens/Register2";
 import RegisterPage3 from "../../Screens/Register3";
 import ProductDetail from "../../Screens/StorePage/ProductDetail";
 
+import PanelLayout from "../../App/PanelLayout/PanelLayout";
+
+import Dashboard from "../../Screens/Panel/Dashboard";
+import Orders from "../../Screens/Panel/Orders";
+import Favorites from "../../Screens/Panel/Favorites";
+import Addresses from "../../Screens/Panel/Addresses";
+import Profile from "../../Screens/Panel/Profile";
+import SettingPanel from "../../Screens/Panel/SettingPanel";
+import OrderDetails from "../../Screens/Panel/Orders/OrderDetails";
+
 export const Routers = createBrowserRouter([
   {
     path: "/",
@@ -55,7 +65,7 @@ export const Routers = createBrowserRouter([
         element: <BasketCart />,
       },
       {
-        path: "ProductDetail",
+        path: "ProductDetail/:id",
         element: <ProductDetail />,
       },
     ],
@@ -88,5 +98,71 @@ export const Routers = createBrowserRouter([
   {
     path: "Register3",
     element: <RegisterPage3 />,
+  },
+
+  // {
+  //   path: "/panel",
+  //   element: <PanelLayout />,
+  //   children: [
+  //     {
+  //       index: true,
+  //       element: <Dashboard />,
+  //     },
+  //     {
+  //       path: "orders",
+  //       element: <Orders />,
+  //     },
+  //     {
+  //       path: "favorites",
+  //       element: <Favorites />,
+  //     },
+  //     {
+  //       path: "addresses",
+  //       element: <Addresses />,
+  //     },
+  //     {
+  //       path: "profile",
+  //       element: <Profile />,
+  //     },
+  //       {
+  //       path: "Settings",
+  //       element: <SettingPanel />,
+  //     },
+  //   ],
+  // },
+
+  {
+    path: "/panel",
+    element: <PanelLayout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
+      },
+      {
+        path: "orders/:orderId",
+        element: <OrderDetails />,
+      },
+      {
+        path: "favorites",
+        element: <Favorites />,
+      },
+      {
+        path: "addresses",
+        element: <Addresses />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "Settings",
+        element: <SettingPanel />,
+      },
+    ],
   },
 ]);
