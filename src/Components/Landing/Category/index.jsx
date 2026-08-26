@@ -40,7 +40,7 @@ export default function FeaturesMarquee() {
     >
       {[...slidesData, ...slidesData].map((item, index) => (
         <SwiperSlide key={index} className="!w-auto select-none">
-          <div className="flex items-center  text-gray-700 text-lg font-medium shadow-sm hover:shadow-md transition">
+          <div className="flex items-center  text-gray-900 text-lg font-medium shadow-sm hover:shadow-md transition">
             <img
               src={item.icon}
               className="w-36 h-10 object-contain "

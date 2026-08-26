@@ -1,199 +1,1011 @@
-import { useEffect, useState, useContext } from "react";
-import { GoArrowUpRight } from "react-icons/go";
-import { FaStar, FaRegStar } from "react-icons/fa";
-import { CartContext } from "../../../context/CartContext";
+// import { useEffect, useState, useContext } from "react";
+// import { GoArrowUpRight } from "react-icons/go";
+// import { FaStar } from "react-icons/fa";
+// import { CartContext } from "../../../context/CartContext";
 
-/* ================= Rating Stars ================= */
-function RatingStars({ count, onChange }) {
+// function RatingStars({ count }) {
+//   return (
+//     <div className="flex gap-1">
+//       {[...Array(5)].map((_, i) => (
+//         <FaStar
+//           key={i}
+//           className={`text-[11px] ${
+//             i < count ? "text-black" : "text-gray-200"
+//           }`}
+//         />
+//       ))}
+//     </div>
+//   );
+// }
+
+// export default function ProductGrid() {
+//   const [products, setProducts] = useState([]);
+//   const [added, setAdded] = useState({});
+//   const [toast, setToast] = useState(false);
+
+//   const { addToCart } = useContext(CartContext);
+
+//   useEffect(() => {
+//     Promise.all([
+//       fetch("https://dummyjson.com/products/category/mens-shirts").then((r) =>
+//         r.json(),
+//       ),
+
+//       fetch("https://dummyjson.com/products/category/womens-dresses").then(
+//         (r) => r.json(),
+//       ),
+//     ])
+
+//       .then(([men, women]) => {
+//         setProducts([...men.products, ...women.products].slice(0, 8));
+//       });
+//   }, []);
+
+//   const buy = (item) => {
+//     if (added[item.id]) return;
+
+//     addToCart({
+//       id: item.id,
+//       title: item.title,
+//       image: item.thumbnail,
+//       price: item.price * 60000,
+//       quantity: 1,
+//     });
+
+//     setAdded((prev) => ({
+//       ...prev,
+//       [item.id]: true,
+//     }));
+
+//     setToast(true);
+
+//     setTimeout(() => setToast(false), 2000);
+
+//     setTimeout(() => {
+//       setAdded((prev) => {
+//         const copy = { ...prev };
+
+//         delete copy[item.id];
+
+//         return copy;
+//       });
+//     }, 3000);
+//   };
+
+//   return (
+//     <section
+//       className="
+// max-w-[1300px]
+// mx-auto
+// px-5
+// mt-32
+// "
+//     >
+//       <div
+//         className="
+// flex
+// justify-between
+// items-end
+// mb-12
+// "
+//       >
+//         <div>
+//           <p
+//             className="
+// text-xs
+// tracking-[4px]
+// text-gray-400
+// mb-3
+// "
+//           >
+//             COLLECTION
+//           </p>
+
+//           <h2
+//             className="
+// text-3xl
+// font-semibold
+// "
+//           >
+//             جدیدترین محصولات
+//           </h2>
+//         </div>
+
+//         <button
+//           className="
+// flex
+// items-center
+// gap-2
+// text-sm
+// border-b
+// border-black
+// pb-1
+// hover:gap-4
+// transition-all
+// "
+//         >
+//           مشاهده همه
+//           <GoArrowUpRight />
+//         </button>
+//       </div>
+
+//       {toast && (
+//         <div
+//           className="
+// fixed
+// bottom-7
+// right-7
+// bg-black
+// text-white
+// px-5
+// py-3
+// rounded-full
+// text-sm
+// z-50
+// "
+//         >
+//           به سبد خرید اضافه شد
+//         </div>
+//       )}
+
+//       <div
+//         className="
+// grid
+// grid-cols-1
+// sm:grid-cols-2
+// lg:grid-cols-4
+// gap-x-7
+// gap-y-14
+// "
+//       >
+//         {products.map((item) => (
+//           <div
+//             key={item.id}
+//             className="
+// group
+// relative
+// "
+//           >
+//             <div
+//               className="
+// relative
+// bg-[#faf9f7]
+// rounded-[34px]
+// overflow-hidden
+// aspect-[4/5]
+// flex
+// items-center
+// justify-center
+// "
+//             >
+//               <div
+//                 className="
+// absolute
+// top-5
+// right-5
+// bg-white
+// rounded-full
+// px-3
+// py-1
+// text-[11px]
+// shadow-sm
+// "
+//               >
+//                 NEW
+//               </div>
+
+//               <img
+//                 src={item.thumbnail}
+//                 className="
+// w-[85%]
+// h-[85%]
+// object-contain
+// transition
+// duration-700
+// group-hover:scale-105
+// "
+//               />
+
+//               <button
+//                 onClick={() => buy(item)}
+//                 className={`
+// absolute
+// bottom-5
+// left-5
+// right-5
+// h-12
+// rounded-full
+// text-sm
+// transition
+// duration-300
+
+// ${
+//   added[item.id]
+//     ? "bg-green-600 text-white"
+//     : "bg-black text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0"
+// }
+
+// `}
+//               >
+//                 {added[item.id] ? "اضافه شد" : "افزودن به سبد"}
+//               </button>
+//             </div>
+
+//             <div
+//               className="
+// mt-5
+// text-right
+// "
+//             >
+//               <div
+//                 className="
+// flex
+// justify-between
+// items-center
+// mb-2
+// "
+//               >
+//                 <RatingStars count={Math.round(item.rating)} />
+
+//                 <span
+//                   className="
+// text-[11px]
+// text-gray-400
+// "
+//                 >
+//                   LN-{item.id}
+//                 </span>
+//               </div>
+
+//               <h3
+//                 className="
+// font-medium
+// text-sm
+// line-clamp-2
+// leading-6
+// "
+//               >
+//                 {item.title}
+//               </h3>
+
+//               <p
+//                 className="
+// mt-3
+// font-semibold
+// "
+//               >
+//                 {(item.price * 60000).toLocaleString()}
+//                 تومان
+//               </p>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
+
+// // import { useEffect, useState, useContext } from "react";
+// // import { GoArrowUpRight } from "react-icons/go";
+// // import { FaStar } from "react-icons/fa";
+// // import { CartContext } from "../../../context/CartContext";
+
+// // function RatingStars({ count }) {
+// //   return (
+// //     <div className="flex gap-1">
+// //       {[...Array(5)].map((_, i) => (
+// //         <FaStar
+// //           key={i}
+// //           className={`text-[12px] ${
+// //             i < count ? "text-black" : "text-gray-300"
+// //           }`}
+// //         />
+// //       ))}
+// //     </div>
+// //   );
+// // }
+
+// // export default function ProductGrid() {
+// //   const [products, setProducts] = useState([]);
+// //   const [showToast, setShowToast] = useState(false);
+// //   const [addedIds, setAddedIds] = useState({});
+
+// //   const { addToCart } = useContext(CartContext);
+
+// //   useEffect(() => {
+// //     fetch("https://fakestoreapi.com/products?limit=8")
+// //       .then((res) => res.json())
+// //       .then((data) => setProducts(data));
+// //   }, []);
+
+// //   const addProduct = (item) => {
+// //     if (addedIds[item.id]) return;
+
+// //     addToCart({
+// //       id: item.id,
+// //       title: item.title,
+// //       image: item.image,
+// //       price: Math.floor(item.price * 60000),
+// //       quantity: 1,
+// //     });
+
+// //     setAddedIds((prev) => ({
+// //       ...prev,
+// //       [item.id]: true,
+// //     }));
+
+// //     setShowToast(true);
+
+// //     setTimeout(() => {
+// //       setShowToast(false);
+// //     }, 2000);
+
+// //     setTimeout(() => {
+// //       setAddedIds((prev) => {
+// //         const copy = { ...prev };
+// //         delete copy[item.id];
+// //         return copy;
+// //       });
+// //     }, 3000);
+// //   };
+
+// //   return (
+// //     <div
+// //       className="
+// // w-full max-w-[1300px]
+// // mx-auto
+// // px-5
+// // mt-28
+// // relative
+// // "
+// //     >
+// //       <div className="flex justify-between items-center mb-10">
+// //         <h2
+// //           className="
+// // text-2xl
+// // font-semibold
+// // tracking-tight
+// // "
+// //         >
+// //           جدیدترین محصولات
+// //         </h2>
+
+// //         <button
+// //           className="
+// // flex items-center gap-2
+// // border border-gray-300
+// // rounded-full
+// // px-5 py-2
+// // text-sm
+// // hover:bg-black
+// // hover:text-white
+// // transition
+// // "
+// //         >
+// //           مشاهده بیشتر
+// //           <GoArrowUpRight />
+// //         </button>
+// //       </div>
+
+// //       {showToast && (
+// //         <div
+// //           className="
+// // fixed bottom-6 right-6
+// // bg-black text-white
+// // px-5 py-3
+// // rounded-full
+// // text-sm
+// // z-50
+// // shadow-xl
+// // "
+// //         >
+// //           محصول به سبد اضافه شد
+// //         </div>
+// //       )}
+
+// //       <div
+// //         className="
+// // grid
+// // grid-cols-1
+// // sm:grid-cols-2
+// // lg:grid-cols-4
+// // gap-x-6
+// // gap-y-10
+// // "
+// //       >
+// //         {products.map((item) => {
+// //           const added = addedIds[item.id];
+
+// //           return (
+// //             <div
+// //               key={item.id}
+// //               className="
+// // group
+// // relative
+// // "
+// //             >
+// //               <div
+// //                 className="
+// // relative
+// // bg-[#f6f6f4]
+// // rounded-[28px]
+// // overflow-hidden
+// // h-[390px]
+// // flex
+// // items-center
+// // justify-center
+// // transition-all
+// // duration-500
+// // group-hover:shadow-2xl
+// // "
+// //               >
+// //                 <span
+// //                   className="
+// // absolute top-5 left-5
+// // bg-white
+// // text-xs
+// // px-3 py-1
+// // rounded-full
+// // shadow-sm
+// // "
+// //                 >
+// //                   جدید
+// //                 </span>
+
+// //                 <img
+// //                   src={item.image}
+// //                   className="
+// // h-[270px]
+// // object-contain
+// // transition duration-700
+// // group-hover:scale-110
+// // "
+// //                 />
+
+// //                 <button
+// //                   onClick={() => addProduct(item)}
+// //                   disabled={added}
+// //                   className={`
+// // absolute
+// // bottom-5
+// // left-5
+// // right-5
+// // h-12
+// // rounded-full
+// // text-sm
+// // font-medium
+// // transition-all
+// // duration-300
+
+// // ${
+// //   added
+// //     ? "bg-green-600 text-white"
+// //     : "bg-black text-white opacity-0 translate-y-5 group-hover:opacity-100 group-hover:translate-y-0"
+// // }
+
+// // `}
+// //                 >
+// //                   {added ? "به سبد اضافه شد" : "افزودن به سبد خرید"}
+// //                 </button>
+// //               </div>
+
+// //               <div
+// //                 className="
+// // mt-5
+// // flex
+// // flex-col
+// // gap-2
+// // text-right
+// // "
+// //               >
+// //                 <div className="flex justify-between items-center">
+// //                   <RatingStars count={Math.floor(item.rating?.rate || 0)} />
+
+// //                   <span
+// //                     className="
+// // text-xs
+// // text-gray-400
+// // "
+// //                   >
+// //                     LN-{item.id}
+// //                   </span>
+// //                 </div>
+
+// //                 <h3
+// //                   className="
+// // text-sm
+// // font-medium
+// // line-clamp-2
+// // leading-6
+// // "
+// //                 >
+// //                   {item.title}
+// //                 </h3>
+
+// //                 <div
+// //                   className="
+// // flex justify-between items-center
+// // mt-1
+// // "
+// //                 >
+// //                   <p
+// //                     className="
+// // font-bold
+// // text-base
+// // "
+// //                   >
+// //                     {Math.floor(item.price * 60000).toLocaleString()}
+// //                     تومان
+// //                   </p>
+
+// //                   <span
+// //                     className="
+// // text-xs
+// // text-gray-400
+// // "
+// //                   >
+// //                     موجود
+// //                   </span>
+// //                 </div>
+// //               </div>
+// //             </div>
+// //           );
+// //         })}
+// //       </div>
+// //     </div>
+// //   );
+// // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { useEffect, useState } from "react";
+import { GoArrowUpRight } from "react-icons/go";
+import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
+
+function RatingStars({ count }) {
   return (
-    <div className="flex gap-1 mt-1 select-none">
-      {[...Array(5)].map((_, i) => {
-        const index = i + 1;
-        return (
-          <button
-            key={i}
-            type="button"
-            onClick={() => onChange(index)}
-            aria-label={`${index} ستاره`}
-          >
-            {index <= count ? (
-              <FaStar className="text-yellow-400" />
-            ) : (
-              <FaRegStar className="text-yellow-400" />
-            )}
-          </button>
-        );
-      })}
+    <div className="flex gap-1">
+      {[...Array(5)].map((_, i) => (
+        <FaStar
+          key={i}
+          className={`text-[11px] ${
+            i < count ? "text-black" : "text-gray-200"
+          }`}
+        />
+      ))}
     </div>
   );
 }
 
-/* ================= Product Grid ================= */
+
+
 export default function ProductGrid() {
-  const [products, setProducts] = useState([]);
-  const [ratings, setRatings] = useState({});
-  const [showToast, setShowToast] = useState(false);
-  const [addedIds, setAddedIds] = useState({}); // نگهداری وضعیت افزودن برای هر محصول
 
-  const { addToCart, cartItems } = useContext(CartContext);
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=8")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+const [products,setProducts]=useState([]);
 
-  const handleRatingChange = (id, rating) => {
-    setRatings((prev) => ({ ...prev, [id]: rating }));
-  };
+const navigate = useNavigate();
 
-  const handleAddToCart = (product) => {
-    // اگر قبلاً اضافه شده بود، هیچ کاری نکن
-    if (addedIds[product.id]) return;
 
-    addToCart({
-      id: product.id,
-      title: product.title,
-      price: Math.floor(product.price * 60000),
-      image: product.image,
-      quantity: 1,
-    });
 
-    // به عنوان "اضافه شده" علامت بزن
-    setAddedIds((prev) => ({ ...prev, [product.id]: true }));
+useEffect(()=>{
 
-    // نمایش پیام Toast کلی
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 2000);
 
-    // بعد از 3 ثانیه وضعیت "اضافه شده" را حذف کن تا بتوان دوباره کلیک کرد
-    setTimeout(() => {
-      setAddedIds((prev) => {
-        const copy = { ...prev };
-        delete copy[product.id];
-        return copy;
-      });
-    }, 3000);
-  };
+Promise.all([
 
-  return (
-    <div className="w-full max-w-[1300px] mx-auto px-4 py-10 mt-20 relative">
-      <button
-        className="border mb-10 border-gray-400 px-4 py-1 rounded-full text-sm
-                   transition duration-300 ease-in-out
-                   hover:bg-gray-100 hover:text-gray-800 hover:shadow-md 
-                   flex gap-2 h-10 items-center -ml-10"
-        aria-label="مشاهده بیشتر"
-        type="button"
-      >
-        <GoArrowUpRight size={20} />
-        مشاهده بیشتر
-      </button>
-      {/* Toast */}
-      {showToast && (
-        <div
-          className="
-            fixed bottom-6 right-6 z-50
-            bg-gray-900 text-white
-            px-4 py-3 rounded-lg
-            shadow-lg text-sm
-            animate-fadeIn
-          "
-        >
-          ✅ به سبد خرید اضافه شد
-        </div>
-      )}
+fetch("https://dummyjson.com/products/category/mens-shirts")
+.then(r=>r.json()),
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((item) => {
-          const currentRating =
-            ratings[item.id] ?? Math.floor(item.rating?.rate || 0);
 
-          // آیا محصول الان اضافه شده؟
-          const isAdded = addedIds[item.id] === true;
+fetch("https://dummyjson.com/products/category/womens-dresses")
+.then(r=>r.json())
 
-          return (
-            <div
-              key={item.id}
-              className="
-                group relative bg-[#ececec]
-                rounded-xl p-3
-                shadow-sm hover:shadow-lg transition
-                flex flex-col
-              "
-            >
-              {/* تخفیف */}
-              <span className="absolute top-2 left-2 bg-gray-900 text-white text-xs px-2 py-1 rounded-md">
-                15%
-              </span>
+])
 
-              {/* تصویر */}
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-56 object-contain"
-              />
 
-              {/* محتوا */}
-              <div className="flex flex-col items-end flex-1 mt-2">
-                {/* <RatingStars
-                  count={currentRating}
-                  onChange={(val) => handleRatingChange(item.id, val)}
-                /> */}
+.then(([men,women])=>{
 
-                <p className="text-sm text-gray-700 mt-2 h-12 overflow-hidden text-right">
-                  {item.title}
-                </p>
 
-                <span className="text-xs text-gray-500 mt-1">
-                  کد محصول: <b>LN-{item.id}</b>
-                </span>
+setProducts(
+[
+...men.products,
+...women.products
+].slice(0,8)
+)
 
-                <p className="text-sm font-bold text-gray-900 mt-2">
-                  {Math.floor(item.price * 60000).toLocaleString()} تومان
-                </p>
-              </div>
 
-              {/* دکمه خرید – دسکتاپ hover */}
-              <button
-                onClick={() => handleAddToCart(item)}
-                disabled={isAdded}
-                className={`
-                  hidden sm:flex
-                  absolute bottom-3 left-3 right-3
-                  py-2 rounded-lg text-sm font-semibold
-                  items-center justify-center gap-2
-                  transition-all duration-300
-                  ${
-                    isAdded
-                      ? "bg-green-600 text-white cursor-not-allowed"
-                      : "bg-gray-900 text-white group-hover:opacity-100 group-hover:translate-y-0 opacity-0 translate-y-3"
-                  }
-                `}
-              >
-                {isAdded ? "به سبد اضافه شد" : "افزودن به سبد خرید"}
-                <GoArrowUpRight size={18} />
-              </button>
+})
 
-              {/* دکمه خرید – موبایل */}
-              <button
-                onClick={() => handleAddToCart(item)}
-                disabled={isAdded}
-                className={`
-                  sm:hidden mt-3 py-2 rounded-lg text-sm font-semibold
-                  flex items-center justify-center gap-2
-                  ${isAdded ? "bg-green-600 cursor-not-allowed" : "bg-gray-900"}
-                  text-white
-                `}
-              >
-                {isAdded ? "به سبد اضافه شد" : "افزودن به سبد خرید"}
-                <GoArrowUpRight size={18} />
-              </button>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
+
+},[])
+
+
+
+
+return (
+
+
+<section
+className="
+max-w-[1300px]
+mx-auto
+px-5
+mt-32
+"
+>
+
+
+
+
+<div className="
+flex
+justify-between
+items-end
+mb-12
+">
+
+
+<div>
+
+
+<p className="
+text-xs
+tracking-[4px]
+text-gray-400
+mb-3
+"
+>
+COLLECTION
+</p>
+
+
+
+<h2
+className="
+text-3xl
+font-semibold
+"
+>
+
+جدیدترین محصولات
+
+</h2>
+
+
+</div>
+
+
+
+
+<button
+
+className="
+flex
+items-center
+gap-2
+text-sm
+border-b
+border-black
+pb-1
+hover:gap-4
+transition-all
+"
+
+>
+
+مشاهده همه
+
+<GoArrowUpRight/>
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<div
+className="
+grid
+grid-cols-1
+sm:grid-cols-2
+lg:grid-cols-4
+gap-x-7
+gap-y-14
+"
+>
+
+
+
+
+{
+products.map((item)=>(
+
+
+
+<div
+
+key={item.id}
+
+onClick={()=>navigate(`/ProductDetail/${item.id}`)}
+
+className="
+group
+relative
+cursor-pointer
+"
+
+>
+
+
+
+
+
+<div
+
+className="
+relative
+bg-[#faf9f7]
+rounded-[34px]
+overflow-hidden
+aspect-[4/5]
+flex
+items-center
+justify-center
+"
+
+>
+
+
+
+
+<div
+
+className="
+absolute
+top-5
+right-5
+bg-white
+rounded-full
+px-3
+py-1
+text-[11px]
+shadow-sm
+"
+
+>
+
+NEW
+
+</div>
+
+
+
+
+
+
+
+<img
+
+src={item.thumbnail}
+
+alt={item.title}
+
+className="
+w-[85%]
+h-[85%]
+object-contain
+transition
+duration-700
+group-hover:scale-105
+"
+
+/>
+
+
+
+
+
+
+
+
+<button
+
+
+onClick={(e)=>{
+
+e.stopPropagation();
+
+navigate(`/ProductDetail/${item.id}`)
+
+}}
+
+
+
+className="
+absolute
+bottom-5
+left-5
+right-5
+h-12
+rounded-full
+bg-black
+text-white
+text-sm
+transition-all
+duration-300
+opacity-0
+translate-y-4
+group-hover:opacity-100
+group-hover:translate-y-0
+"
+
+>
+
+
+مشاهده محصول
+
+<GoArrowUpRight className="inline ml-1"/>
+
+
+</button>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div
+
+className="
+mt-5
+text-right
+"
+
+>
+
+
+
+
+<div
+
+className="
+flex
+justify-between
+items-center
+mb-2
+"
+
+>
+
+
+<RatingStars
+
+count={Math.round(item.rating)}
+
+/>
+
+
+
+<span
+
+className="
+text-[11px]
+text-gray-400
+"
+
+>
+
+LN-{item.id}
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+
+
+<h3
+
+className="
+font-medium
+text-sm
+line-clamp-2
+leading-6
+"
+
+>
+
+{item.title}
+
+</h3>
+
+
+
+
+
+<p
+
+className="
+mt-3
+font-semibold
+"
+
+>
+
+{(item.price*60000).toLocaleString()}
+
+تومان
+
+</p>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+))
+
+}
+
+
+
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+)
+
 }
