@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 const products = [
   {
     id: 1,
@@ -32,8 +32,9 @@ const products = [
 ];
 
 export default function NewArrivals() {
+  const navigate = useNavigate();
   return (
-    <section className="w-full py-28 bg-white"   dir="rtl">
+    <section className="w-full py-28 bg-white" dir="rtl">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
@@ -44,16 +45,14 @@ export default function NewArrivals() {
         >
           <div>
             <span className="uppercase tracking-[5px] text-xs text-neutral-400">
-            سبک برندهای لوکس
+              سبک برندهای لوکس
             </span>
-
-            <h2 className="mt-4 text-4xl md:text-5xl font-light tracking-tight text-neutral-900">
-             جدیدترین ها
-            </h2>
           </div>
-
-          <button className="hidden md:flex items-center gap-2 text-sm text-neutral-900 hover:gap-4 transition-all">
-           مشاهده همه
+          <button
+            onClick={() => navigate("/Store")}
+            className="hidden md:flex items-center gap-2 text-sm text-neutral-900 hover:gap-4 transition-all"
+          >
+            مشاهده همه
             <ArrowUpRight size={18} strokeWidth={1.5} />
           </button>
         </motion.div>
@@ -87,9 +86,7 @@ export default function NewArrivals() {
                     {item.name}
                   </h3>
 
-                  <p className="mt-2 text-sm text-neutral-500">
-                    {item.price}
-                  </p>
+                  <p className="mt-2 text-sm text-neutral-500">{item.price}</p>
                 </div>
 
                 <div className="w-10 h-10 rounded-full border border-neutral-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">

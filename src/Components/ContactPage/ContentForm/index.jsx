@@ -45,7 +45,7 @@ const ContactSection = () => {
     <div className="bg-white min-h-screen font-yekan">
       <div>
         <img
-          src="Blog4.png"
+          src="Blog.png"
           alt="blog banner"
           className="w-full h-40 object-cover rounded-b-md shadow-sm"
         />

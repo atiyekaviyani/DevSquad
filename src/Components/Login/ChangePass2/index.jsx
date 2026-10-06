@@ -47,7 +47,7 @@ const Index = () => {
           {dark ? <FaSun /> : <FaMoon />}
         </button>
 
-        <h1 className="text-3xl font-semibold text-center">تغییر رمز عبور</h1>
+        <h1 className="text-3xl font-semibold text-center">تغییر **رمز عبور</h1>
         <br />
         <h2 className="ml-20">جهت دریافت کد شماره خود را وارد کنید</h2>
 

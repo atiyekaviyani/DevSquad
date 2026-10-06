@@ -12,7 +12,7 @@ const AboutPage = () => {
     <div className="w-full font-yekan bg-white" dir="rtl">
       <div>
         <img
-          src="Blog3.png"
+          src="Blog.png"
           alt="blog banner"
           className="w-full h-36 sm:h-48 md:h-36 object-cover rounded-b-2xl shadow-md"
         />
