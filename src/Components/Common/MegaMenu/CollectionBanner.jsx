@@ -1,70 +1,117 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export default function CollectionBanner() {
   return (
     <div
       className="
-      bg-[#f7f4f1]
-      rounded-[28px]
-      min-h-[260px]
-      flex
-      items-center
-      justify-between
-      overflow-hidden
-    "
+        group
+        bg-[#F1EDE6]
+        rounded-[18px]
+        min-h-[240px]
+        flex
+        items-stretch
+        justify-between
+        overflow-hidden
+        border
+        border-[#E5DED2]
+      "
     >
-      <div className="p-10">
+      <div
+        className="
+          flex
+          flex-col
+          justify-center
+          p-8
+          lg:p-10
+          shrink-0
+        "
+      >
         <p
           className="
-          text-xs
-          tracking-[4px]
-          text-zinc-500
-          mb-4
-        "
+            text-[9px]
+            tracking-[4px]
+            uppercase
+            text-[#1F2240]/45
+            mb-4
+          "
         >
           NEW COLLECTION
         </p>
 
         <h2
           className="
-          text-4xl
-          font-bold
-          mb-6
-        "
+            text-2xl
+            lg:text-3xl
+            font-medium
+            tracking-tight
+            text-[#1F2240]
+            mb-6
+          "
         >
           کالکشن تابستانه
         </h2>
 
-        <button
+        <NavLink
+          to="/Store"
           className="
-          rounded-full
-          border
-          px-6
-          py-3
-          flex
-          items-center
-          gap-2
-          hover:bg-black
-          hover:text-white
-          transition-all
-        "
+            group/button
+            w-fit
+            min-w-[145px]
+            h-11
+            px-5
+            rounded-full
+            border
+            border-[#1F2240]/25
+            flex
+            items-center
+            justify-center
+            gap-2
+            text-[11px]
+            font-medium
+            text-[#1F2240]
+            transition-all
+            duration-500
+            hover:bg-[#1F2240]
+            hover:text-[#F7F3EB]
+            hover:border-[#1F2240]
+          "
         >
-          مشاهده و خرید
+          <span>مشاهده و خرید</span>
 
-          <ArrowLeft size={16} />
-        </button>
+          <ArrowLeft
+            size={15}
+            strokeWidth={1.5}
+            className="
+              transition-transform
+              duration-300
+              group-hover/button:-translate-x-1
+            "
+          />
+        </NavLink>
       </div>
 
-      <img
-        src="/images/banner-fashion.jpg"
-        alt=""
+      <div
         className="
-        w-[40%]
-        h-full
-        object-cover
-      "
-      />
+          relative
+          w-[42%]
+          min-h-[240px]
+          overflow-hidden
+        "
+      >
+
+        <div
+          className="
+            absolute
+            inset-0
+            bg-gradient-to-l
+            from-transparent
+            to-[#1F2240]/[0.04]
+            pointer-events-none
+          "
+        />
+      </div>
     </div>
   );
 }

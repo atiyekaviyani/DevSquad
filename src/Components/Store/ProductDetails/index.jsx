@@ -14,7 +14,6 @@ export default function ProductDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { addToCart } = useContext(CartContext);
-
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState(0);
@@ -71,41 +70,52 @@ export default function ProductDetails() {
   }, [id]);
 
   useEffect(() => {
-    const loadFavoriteStatus = async () => {
-      try {
-        if (!id) return;
+  const loadFavoriteStatus = async () => {
+    try {
+      if (!id) return;
 
-        const response = await getFavorites();
+      const response = await getFavorites();
 
-        console.log(
-          "FAVORITES FOR PRODUCT DETAIL:",
-          JSON.stringify(response, null, 2),
-        );
+      console.log(
+        "FAVORITES FOR PRODUCT DETAIL:",
+        JSON.stringify(response, null, 2)
+      );
 
-        const favorites = Array.isArray(response?.data)
-          ? response.data.flat()
-          : [];
+      // apiClient خودش response.data را برمی‌گرداند
+      // بنابراین اینجا response مستقیماً شامل:
+      // { status, message, data } است.
 
-        console.log("FLATTENED FAVORITES:", favorites);
+      const favorites = Array.isArray(response?.data)
+        ? response.data.flat()
+        : [];
 
-        const currentFavorite = favorites.find(
-          (item) => Number(item?.id) === Number(id),
-        );
+      console.log("FLATTENED FAVORITES:", favorites);
 
-        if (currentFavorite) {
-          setIsFavorite(true);
-          setFavoriteId(currentFavorite.id);
-        } else {
-          setIsFavorite(false);
-          setFavoriteId(null);
-        }
-      } catch (err) {
-        console.error("Favorite Status Error:", err);
+      const currentFavorite = favorites.find(
+        (item) => Number(item?.id) === Number(id)
+      );
+
+      console.log("CURRENT FAVORITE:", currentFavorite);
+
+      if (currentFavorite) {
+        setIsFavorite(true);
+
+        // در API فعلی، id همان id محصول است.
+        setFavoriteId(currentFavorite.id);
+      } else {
+        setIsFavorite(false);
+        setFavoriteId(null);
       }
-    };
+    } catch (err) {
+      console.error("Favorite Status Error:", err);
 
-    loadFavoriteStatus();
-  }, [id]);
+      setIsFavorite(false);
+      setFavoriteId(null);
+    }
+  };
+
+  loadFavoriteStatus();
+}, [id]);
 
   const handleFavorite = async () => {
     if (!product || favoriteLoading) {
@@ -143,7 +153,7 @@ export default function ProductDetails() {
 
       setIsFavorite(true);
 
-      const newFavoriteId = response?.data?.id ?? null;
+      const newFavoriteId = response?.data?.id ?? response?.id ?? null;
 
       setFavoriteId(newFavoriteId);
 
@@ -277,20 +287,16 @@ export default function ProductDetails() {
   };
 
   return (
-    <section
-  dir="rtl"
-  className="min-h-screen bg-[#faf9f6] px-5"
->
-  <div className="-mx-5">
-    <img
-      src="/Blog.png"
-      alt="banner"
-      className="h-40 w-full object-cover"
-    />
-  </div>
+    <section dir="rtl" className="min-h-screen bg-[#faf9f6] px-5">
+      <div className="-mx-5">
+        <img
+          src="/Blog.png"
+          alt="banner"
+          className="h-40 w-full object-cover"
+        />
+      </div>
 
-  <div className="mx-auto max-w-[1250px]">
-      
+      <div className="mx-auto max-w-[1250px]">
         <nav
           aria-label="مسیر صفحه"
           className="mb-8 mt-12 flex items-center gap-2 text-sm"

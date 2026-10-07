@@ -1,14 +1,121 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 import MenuColumn from "./MenuColumn";
 import ProductCard from "./ProductCard";
 import CollectionBanner from "./CollectionBanner";
 
-import { women, men, collections, bestSellers } from "./data";
+import { getProducts } from "../../../Core/Services/api/productApi";
+import { getCategories } from "../../../Core/Services/api/categoryApi";
 
 export default function MegaMenu() {
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadMegaMenuData = async () => {
+      try {
+        const [categoriesData, productsData] = await Promise.all([
+          getCategories(),
+          getProducts(),
+        ]);
+
+        if (!isMounted) return;
+
+        setCategories(Array.isArray(categoriesData) ? categoriesData : []);
+
+        setProducts(Array.isArray(productsData) ? productsData : []);
+      } catch (error) {
+        console.error("MegaMenu API Error:", error);
+
+        if (!isMounted) return;
+
+        setCategories([]);
+        setProducts([]);
+      } finally {
+        if (isMounted) {
+          setLoadingCategories(false);
+          setLoadingProducts(false);
+        }
+      }
+    };
+
+    loadMegaMenuData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const findMainCategory = (keywords) => {
+    return categories.find((category) => {
+      const name = String(
+        category?.name || category?.title || category?.label || "",
+      ).trim();
+
+      return keywords.some((keyword) => name.includes(keyword));
+    });
+  };
+
+  const getCategoryItems = (category) => {
+    if (!category) return [];
+
+    if (Array.isArray(category.children) && category.children.length > 0) {
+      return category.children.map((child) => ({
+        label: child?.name || child?.title || child?.label || "",
+        slug: child?.slug || "",
+      }));
+    }
+
+    return [];
+  };
+
+  const womenCategory = useMemo(
+    () => findMainCategory(["زنانه", "زنان"]),
+    [categories],
+  );
+
+  const menCategory = useMemo(
+    () => findMainCategory(["مردانه", "مردان"]),
+    [categories],
+  );
+
+  const kidsCategory = useMemo(
+    () => findMainCategory(["بچگانه", "کودک", "کودکان"]),
+    [categories],
+  );
+
+  const womenItems = useMemo(
+    () => getCategoryItems(womenCategory),
+    [womenCategory],
+  );
+
+  const menItems = useMemo(() => getCategoryItems(menCategory), [menCategory]);
+
+  const kidsItems = useMemo(
+    () => getCategoryItems(kidsCategory),
+    [kidsCategory],
+  );
+
+  const popularProducts = useMemo(() => {
+    if (!Array.isArray(products)) return [];
+
+    return [...products]
+      .sort((a, b) => Number(b?.rating || 0) - Number(a?.rating || 0))
+      .slice(0, 3);
+  }, [products]);
+
+  const categoryLoading = loadingCategories && categories.length === 0;
+
+  const productLoading = loadingProducts && products.length === 0;
+
   return (
     <motion.div
       initial={{
@@ -41,7 +148,6 @@ export default function MegaMenu() {
         overflow-hidden
       "
     >
-      {/* Header / Top Label */}
       <div
         className="
           px-10
@@ -90,22 +196,21 @@ export default function MegaMenu() {
             "
           >
             <span className="w-8 h-px bg-[#1F2240]/20" />
+
             <span>EXPLORE THE COLLECTION</span>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="px-10 lg:px-12 py-10">
         <div
           className="
             grid
             grid-cols-1
-            md:grid-cols-[1fr_0.8fr_1fr_1.25fr]
+            md:grid-cols-[1fr_1fr_1fr_1.25fr]
             gap-0
           "
         >
-          {/* Women */}
           <div
             className="
               md:pl-8
@@ -113,10 +218,18 @@ export default function MegaMenu() {
               border-[#E5DED2]
             "
           >
-            <MenuColumn title="دسته‌بندی زنانه" items={women} />
+            {categoryLoading ? (
+              <div className="space-y-3">
+                <div className="h-4 w-24 bg-[#E5DED2]/70 animate-pulse rounded" />
+                <div className="h-3 w-20 bg-[#E5DED2]/50 animate-pulse rounded" />
+                <div className="h-3 w-24 bg-[#E5DED2]/50 animate-pulse rounded" />
+                <div className="h-3 w-16 bg-[#E5DED2]/50 animate-pulse rounded" />
+              </div>
+            ) : (
+              <MenuColumn title="دسته‌بندی زنانه" items={womenItems} />
+            )}
           </div>
 
-          {/* Collections */}
           <div
             className="
               md:px-8
@@ -124,10 +237,18 @@ export default function MegaMenu() {
               border-[#E5DED2]
             "
           >
-            <MenuColumn title="کالکشن‌ها" items={collections} />
+            {categoryLoading ? (
+              <div className="space-y-3">
+                <div className="h-4 w-24 bg-[#E5DED2]/70 animate-pulse rounded" />
+                <div className="h-3 w-20 bg-[#E5DED2]/50 animate-pulse rounded" />
+                <div className="h-3 w-24 bg-[#E5DED2]/50 animate-pulse rounded" />
+                <div className="h-3 w-16 bg-[#E5DED2]/50 animate-pulse rounded" />
+              </div>
+            ) : (
+              <MenuColumn title="دسته‌بندی مردانه" items={menItems} />
+            )}
           </div>
 
-          {/* Men */}
           <div
             className="
               md:px-8
@@ -135,11 +256,25 @@ export default function MegaMenu() {
               border-[#E5DED2]
             "
           >
-            <MenuColumn title="دسته‌بندی مردانه" items={men} />
+            {categoryLoading ? (
+              <div className="space-y-3">
+                <div className="h-4 w-24 bg-[#E5DED2]/70 animate-pulse rounded" />
+                <div className="h-3 w-20 bg-[#E5DED2]/50 animate-pulse rounded" />
+                <div className="h-3 w-24 bg-[#E5DED2]/50 animate-pulse rounded" />
+                <div className="h-3 w-16 bg-[#E5DED2]/50 animate-pulse rounded" />
+              </div>
+            ) : (
+              <MenuColumn title="دسته‌بندی بچگانه" items={kidsItems} />
+            )}
           </div>
 
-          {/* Best Sellers */}
-          <div className="md:pr-8 mt-8 md:mt-0">
+          <div
+            className="
+              md:pr-8
+              mt-10
+              md:mt-0
+            "
+          >
             <div
               className="
                 flex
@@ -169,7 +304,7 @@ export default function MegaMenu() {
                     text-[#1F2240]
                   "
                 >
-                  پرفروش‌ترین‌ها
+                  محبوب‌ترین‌ها
                 </h3>
               </div>
 
@@ -185,11 +320,14 @@ export default function MegaMenu() {
                   text-[#1F2240]
                 "
               >
-                <span className="text-[11px]">04</span>
+                <span className="text-[11px]">
+                  {productLoading
+                    ? "—"
+                    : String(popularProducts.length).padStart(2, "0")}
+                </span>
               </div>
             </div>
 
-            {/* Products */}
             <div
               className="
                 space-y-1
@@ -200,14 +338,25 @@ export default function MegaMenu() {
                 border-white/80
               "
             >
-              {bestSellers.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+              {productLoading ? (
+                <>
+                  <div className="h-16 bg-[#E5DED2]/50 animate-pulse rounded-[10px]" />
+                  <div className="h-16 bg-[#E5DED2]/50 animate-pulse rounded-[10px]" />
+                  <div className="h-16 bg-[#E5DED2]/50 animate-pulse rounded-[10px]" />
+                </>
+              ) : popularProducts.length > 0 ? (
+                popularProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))
+              ) : (
+                <div className="py-8 text-center text-[11px] text-[#1F2240]/45">
+                  محصول محبوبی پیدا نشد.
+                </div>
+              )}
             </div>
 
-            {/* All Products Button */}
-            <button
-              type="button"
+            <NavLink
+              to="/Store?sort=popular"
               className="
                 group
                 mt-6
@@ -231,7 +380,7 @@ export default function MegaMenu() {
                 duration-500
               "
             >
-              <span>مشاهده همه محصولات</span>
+              <span>مشاهده همه محبوب‌ترین‌ها</span>
 
               <ArrowLeft
                 size={15}
@@ -242,12 +391,11 @@ export default function MegaMenu() {
                   group-hover:-translate-x-1
                 "
               />
-            </button>
+            </NavLink>
           </div>
         </div>
       </div>
 
-      {/* Collection Banner */}
       <div
         className="
           px-10
