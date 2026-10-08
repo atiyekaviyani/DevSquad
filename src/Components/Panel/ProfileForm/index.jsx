@@ -12,7 +12,7 @@
 // import {
 //   getProfile,
 //   updateProfile,
-// } from "../../../core/Services/api/profileApi";
+// } from "../../../Core/Services/api/profileApi";
 
 // export default function ProfileForm({ initialData, onSubmit }) {
 //   const [cropModal, setCropModal] = useState(false);
@@ -600,7 +600,7 @@
 
 import React, { useEffect, useState } from "react";
 import { FaUser, FaPhoneAlt } from "react-icons/fa";
-import { getProfile } from "../../../core/Services/api/profileApi";
+import { getProfile } from "../../../Core/Services/api/profileApi";
 
 const ProfileForm = () => {
   const [profile, setProfile] = useState({
