@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { getProfile } from "../../../core/Services/api/profileApi";
+import { getProfile } from "../../../Core/Services/api/profileApi";
 import { AuthContext } from "../../../context/AuthContext";
 
 const menuItems = [

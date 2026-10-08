@@ -11,7 +11,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 
-import { getProfile } from "../../../core/Services/api/profileApi";
+import { getProfile } from "../../../Core/Services/api/profileApi";
 
 const pageTitles = {
   "/panel": "داشبورد",

@@ -21,7 +21,7 @@ import {
 
 import { CSS } from "@dnd-kit/utilities";
 
-import { getAddresses } from "../../../core/Services/api/addressApi";
+import { getAddresses } from "../../../Core/Services/api/addressApi";
 
 import {
   getProvinces,
