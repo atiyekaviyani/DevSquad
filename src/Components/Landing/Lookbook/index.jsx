@@ -18,7 +18,7 @@ export default function EditorialBanner() {
           <div className="grid lg:grid-cols-2 min-h-[630px]">
             <div className="relative overflow-hidden">
               <img
-                src="568.png"
+                src="568.webp"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover transition duration-1000 hover:scale-105"
               />
@@ -26,7 +26,7 @@ export default function EditorialBanner() {
 
             <div className="relative overflow-hidden">
               <img
-                src="569.png"
+                src="569.webp"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover transition duration-1000 hover:scale-105"
               />

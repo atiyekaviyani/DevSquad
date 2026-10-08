@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import heroImage1 from "../../../../public/style1.png";
-import heroImage2 from "../../../../public/style6.png";
-import heroImage3 from "../../../../public/style11.png";
-import shirt from "../../../../public/style2.png";
-import pants from "../../../../public/style3.png";
-import tshirt from "../../../../public/style4.png";
-import shoes from "../../../../public/style5.png";
-import shirt2 from "../../../../public/style7.png";
-import pants2 from "../../../../public/style8.png";
-import tshirt2 from "../../../../public/style9.png";
-import shoes2 from "../../../../public/style10.png";
-import shirt3 from "../../../../public/style12.png";
-import pants3 from "../../../../public/style13.png";
-import tshirt3 from "../../../../public/style14.png";
-import shoes3 from "../../../../public/style15.png";
+import heroImage1 from "../../../../public/style1.webp";
+import heroImage2 from "../../../../public/style6.webp";
+import heroImage3 from "../../../../public/style11.webp";
+import shirt from "../../../../public/style2.webp";
+import pants from "../../../../public/style3.webp";
+import tshirt from "../../../../public/style4.webp";
+import shoes from "../../../../public/style5.webp";
+import shirt2 from "../../../../public/style7.webp";
+import pants2 from "../../../../public/style8.webp";
+import tshirt2 from "../../../../public/style9.webp";
+import shoes2 from "../../../../public/style10.webp";
+import shirt3 from "../../../../public/style12.webp";
+import pants3 from "../../../../public/style13.webp";
+import tshirt3 from "../../../../public/style14.webp";
+import shoes3 from "../../../../public/style15.webp";
 
 import { getProducts } from "../../../Core/Services/api/productApi";
 

@@ -18,7 +18,7 @@ export default function FeaturedCollection() {
           "
         >
           <img
-            src="878.png"
+            src="878.webp"
             alt="Premium Collection"
             className="
               absolute inset-0 

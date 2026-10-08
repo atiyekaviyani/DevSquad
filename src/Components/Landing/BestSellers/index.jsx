@@ -9,7 +9,7 @@ const products = [
     id: 1,
     title: "هودی اورسایز",
     price: "2790000 تومان",
-    image: "515.png",
+    image: "515.webp",
   },
   {
     id: 2,
